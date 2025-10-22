@@ -142,7 +142,20 @@ class TestIndexer:
         ]
         command = [arg for arg in command if arg]
         logger.info("running command ", " ".join(command))
-        completion = subprocess.run(command, env=os.environ)
+        env = {**os.environ, "GRAPHRAG_INPUT_FILE_TYPE": input_file_type}
+        if not env.get("GRAPHRAG_API_KEY"):
+            env["GRAPHRAG_API_KEY"] = (
+                env.get("OPENAI_API_KEY")
+                or env.get("AZURE_OPENAI_API_KEY")
+                or "placeholder-api-key"
+            )
+        if not env.get("GRAPHRAG_API_BASE"):
+            env["GRAPHRAG_API_BASE"] = (
+                env.get("AZURE_OPENAI_ENDPOINT")
+                or env.get("OPENAI_API_BASE")
+                or "https://placeholder.openai.azure.com"
+            )
+        completion = subprocess.run(command, env=env)
         assert completion.returncode == 0, (
             f"Indexer failed with return code: {completion.returncode}"
         )
