@@ -1,21 +1,5 @@
 name: Python Notebook Tests
-on:
-  push:
-    branches:
-      - "**/main" # match branches like feature/main
-      - "main"    # match the main branch
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
-    branches:
-      - "**/main"
-      - "main"
-    paths-ignore:
-      - "**/*.md"
-      - ".semversioner/**"
+on: push
 
 permissions:
   contents: read
