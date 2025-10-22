@@ -226,6 +226,8 @@ class TestIndexer:
             "LOCAL_BLOB_STORAGE_CONNECTION_STRING": WELL_KNOWN_AZURITE_CONNECTION_STRING,
             "AZURE_AI_SEARCH_URL_ENDPOINT": os.getenv("AZURE_AI_SEARCH_URL_ENDPOINT"),
             "AZURE_AI_SEARCH_API_KEY": os.getenv("AZURE_AI_SEARCH_API_KEY"),
+            "AZURE_CHAT_API_KEY": os.getenv("AZURE_CHAT_API_KEY"),
+            "AZURE_EMBEDDING_API_KEY": os.getenv("AZURE_EMBEDDING_API_KEY"),
         },
         clear=True,
     )
